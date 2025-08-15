@@ -1,0 +1,178 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* IoT Smart Building Design System - Dark theme with cyan accents */
+
+@layer base {
+  :root {
+    /* Light theme - minimal use, app is primarily dark */
+    --background: 0 0% 100%;
+    --foreground: 222.2 84% 4.9%;
+    --card: 0 0% 100%;
+    --card-foreground: 222.2 84% 4.9%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 222.2 84% 4.9%;
+    --primary: 192 91% 36%;
+    --primary-foreground: 0 0% 100%;
+    --secondary: 210 40% 96.1%;
+    --secondary-foreground: 222.2 47.4% 11.2%;
+    --muted: 210 40% 96.1%;
+    --muted-foreground: 215.4 16.3% 46.9%;
+    --accent: 210 40% 96.1%;
+    --accent-foreground: 222.2 47.4% 11.2%;
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 210 40% 98%;
+    --border: 214.3 31.8% 91.4%;
+    --input: 214.3 31.8% 91.4%;
+    --ring: 192 91% 36%;
+    --radius: 0.75rem;
+  }
+
+  .dark {
+    /* Dark theme - primary theme for IoT dashboard */
+    --background: 224 71% 4%;
+    --foreground: 213 31% 91%;
+    
+    --card: 224 71% 4%;
+    --card-foreground: 213 31% 91%;
+    
+    --popover: 224 71% 4%;
+    --popover-foreground: 213 31% 91%;
+    
+    /* Cyan primary for tech/IoT feel */
+    --primary: 192 91% 36%;
+    --primary-foreground: 0 0% 100%;
+    --primary-glow: 192 91% 50%;
+    
+    /* Dark secondary with blue tints */
+    --secondary: 215 25% 12%;
+    --secondary-foreground: 213 31% 91%;
+    
+    --muted: 215 25% 12%;
+    --muted-foreground: 217.9 10.6% 64.9%;
+    
+    /* Accent colors for highlights */
+    --accent: 192 91% 36%;
+    --accent-foreground: 0 0% 100%;
+    
+    /* Status colors */
+    --destructive: 0 72% 51%;
+    --destructive-foreground: 0 0% 100%;
+    --success: 142 69% 58%;
+    --success-foreground: 0 0% 100%;
+    --warning: 38 92% 50%;
+    --warning-foreground: 0 0% 100%;
+    
+    --border: 215 25% 12%;
+    --input: 215 25% 12%;
+    --ring: 192 91% 36%;
+    
+    /* Custom IoT theme colors */
+    --iot-blue: 210 100% 60%;
+    --iot-cyan: 192 91% 36%;
+    --iot-purple: 259 94% 51%;
+    --iot-green: 142 69% 58%;
+    --iot-orange: 25 95% 53%;
+    
+    /* Gradients for visual appeal */
+    --gradient-primary: linear-gradient(135deg, hsl(192 91% 36%), hsl(210 100% 60%));
+    --gradient-secondary: linear-gradient(135deg, hsl(215 25% 12%), hsl(224 71% 8%));
+    --gradient-accent: linear-gradient(135deg, hsl(192 91% 36%), hsl(259 94% 51%));
+    --gradient-glow: linear-gradient(135deg, hsl(192 91% 50% / 0.3), hsl(210 100% 60% / 0.3));
+    
+    /* Shadows with glow effects */
+    --shadow-glow: 0 0 30px hsl(192 91% 36% / 0.3);
+    --shadow-card: 0 4px 20px hsl(224 71% 4% / 0.8);
+    --shadow-intense: 0 0 50px hsl(192 91% 36% / 0.5);
+    
+    /* Animation variables */
+    --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    --transition-bounce: all 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+    font-feature-settings: "rlig" 1, "calt" 1;
+  }
+  
+  html {
+    @apply dark; /* Force dark mode for IoT theme */
+  }
+}
+
+@layer components {
+  /* Custom IoT dashboard styles */
+  .iot-card {
+    @apply bg-gradient-to-br from-card to-muted/50 backdrop-blur-sm border border-border/50 rounded-xl;
+    box-shadow: var(--shadow-card);
+  }
+  
+  .iot-glow {
+    box-shadow: var(--shadow-glow);
+  }
+  
+  .iot-gradient-text {
+    background: var(--gradient-primary);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+  
+  .sensor-reading {
+    @apply text-2xl font-bold tracking-tight;
+    color: hsl(var(--primary));
+    text-shadow: 0 0 10px hsl(var(--primary) / 0.5);
+  }
+  
+  .status-indicator {
+    @apply w-3 h-3 rounded-full animate-pulse;
+  }
+  
+  .status-online {
+    background: hsl(var(--success));
+    box-shadow: 0 0 10px hsl(var(--success) / 0.6);
+  }
+  
+  .status-warning {
+    background: hsl(var(--warning));
+    box-shadow: 0 0 10px hsl(var(--warning) / 0.6);
+  }
+  
+  .status-error {
+    background: hsl(var(--destructive));
+    box-shadow: 0 0 10px hsl(var(--destructive) / 0.6);
+  }
+  
+  /* Chart container styling */
+  .chart-container {
+    @apply iot-card p-6;
+    background: linear-gradient(135deg, hsl(var(--card)) 0%, hsl(var(--muted)) 100%);
+  }
+  
+  /* Navigation styling */
+  .nav-item {
+    @apply px-4 py-2 rounded-lg transition-all duration-300 hover:bg-accent/10 hover:text-accent;
+  }
+  
+  .nav-item.active {
+    @apply bg-primary/10 text-primary;
+    box-shadow: 0 0 20px hsl(var(--primary) / 0.3);
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+  }
+}
